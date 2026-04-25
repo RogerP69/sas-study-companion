@@ -1,4 +1,5 @@
 import asyncio
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Set
 
@@ -8,18 +9,20 @@ from fastapi.staticfiles import StaticFiles
 
 _STATIC_DIR = Path(__file__).parent.parent / "static"
 
-app = FastAPI()
-app.mount("/static", StaticFiles(directory=str(_STATIC_DIR)), name="static")
-
 _connections: Set[WebSocket] = set()
 _state: dict = {"monitoring": False, "processing": False}
 _event_loop: asyncio.AbstractEventLoop | None = None
 
 
-@app.on_event("startup")
-async def _capture_loop() -> None:
+@asynccontextmanager
+async def _lifespan(app: FastAPI):
     global _event_loop
     _event_loop = asyncio.get_running_loop()
+    yield
+
+
+app = FastAPI(lifespan=_lifespan)
+app.mount("/static", StaticFiles(directory=str(_STATIC_DIR)), name="static")
 
 
 @app.get("/")

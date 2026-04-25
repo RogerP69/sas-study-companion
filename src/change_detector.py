@@ -15,10 +15,15 @@ class ChangeDetector:
             self._previous = thumb
             return False
         diff = ImageChops.difference(self._previous, thumb)
-        pixels = list(diff.getdata())
-        changed = sum(1 for r, g, b in pixels if r + g + b > _CHANGE_SENSITIVITY)
+        r, g, b = diff.split()
+        r_bytes, g_bytes, b_bytes = r.tobytes(), g.tobytes(), b.tobytes()
+        total = len(r_bytes)
+        changed = sum(
+            1 for i in range(total)
+            if r_bytes[i] + g_bytes[i] + b_bytes[i] > _CHANGE_SENSITIVITY
+        )
         self._previous = thumb
-        return (changed / len(pixels)) >= self._threshold
+        return (changed / total) >= self._threshold
 
     def reset(self) -> None:
         self._previous = None
