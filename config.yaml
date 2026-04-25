@@ -1,0 +1,21 @@
+monitor:
+  scan_interval_seconds: 20
+  change_threshold_percent: 8
+  debounce_seconds: 1.5
+  monitor_index: 1
+
+hotkeys:
+  toggle: "ctrl+shift+s"
+  analyze: "ctrl+shift+a"
+  scroll_capture: "ctrl+shift+c"
+
+server:
+  host: "localhost"
+  port: 8765
+
+claude:
+  model: "claude-sonnet-4-6"
+  max_tokens: 1500
+
+logging:
+  save_screenshots: false
