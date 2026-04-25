@@ -1,0 +1,100 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #2a2a4a;
+    margin-bottom: 16px;
+}
+
+h1 { font-size: 1rem; font-weight: 600; color: #a0a0c0; }
+
+.indicator {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.indicator.on  { background: #4ade80; box-shadow: 0 0 6px #4ade80; }
+.indicator.off { background: #ef4444; }
+
+#status-text { font-size: 0.8rem; color: #888; }
+
+.spinner {
+    display: none;
+    text-align: center;
+    padding: 32px;
+    color: #888;
+    font-size: 0.9rem;
+}
+.spinner::before {
+    content: "⟳ ";
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.section { margin-bottom: 16px; }
+
+.label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6060a0;
+    margin-bottom: 4px;
+}
+
+.question-box {
+    background: #16213e;
+    border-left: 3px solid #4f46e5;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.answer-box {
+    background: #0f3460;
+    border-left: 3px solid #4ade80;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #a0f0b0;
+}
+
+.explanation-box {
+    background: #16213e;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.explanation-box pre {
+    margin: 8px 0;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+footer {
+    margin-top: 16px;
+    font-size: 0.75rem;
+    color: #555;
+    border-top: 1px solid #2a2a4a;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#result { display: none; }

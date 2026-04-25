@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAS Study Companion</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/prism/prism.min.css">
+</head>
+<body>
+    <header>
+        <div class="indicator off" id="status-indicator"></div>
+        <h1>SAS Study Companion</h1>
+        <span id="status-text">Connecting...</span>
+    </header>
+
+    <div class="spinner" id="spinner">Analyzing question...</div>
+
+    <div id="result">
+        <div class="section">
+            <div class="label">Question</div>
+            <div class="question-box" id="question-text"></div>
+        </div>
+        <div class="section">
+            <div class="label">Answer</div>
+            <div class="answer-box" id="answer-text"></div>
+        </div>
+        <div class="section">
+            <div class="label">Explanation</div>
+            <div class="explanation-box" id="explanation-text"></div>
+        </div>
+    </div>
+
+    <footer>
+        <span id="timestamp"></span>
+        <span id="log-link"></span>
+    </footer>
+
+    <script src="/static/prism/prism.min.js"></script>
+    <script src="/static/prism/prism-sas.min.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>
